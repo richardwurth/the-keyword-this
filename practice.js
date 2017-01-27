@@ -25,8 +25,17 @@
 
     //Code Here
 
+let user = {
+  username: "darkleon14",
+  email: "darkleon14@hotmail.com",
+  getUsername: function () {
+    return this.username;
+  }
+}
+
 //Now, invoke the getUsername method and verify you got the username of the object and not anything else.
 
+user.getUsername();
 
 //Next Problem
 
@@ -35,11 +44,24 @@
 
   //Function Invocations Here
 
+const Car = function (make, model, year) {
+  this.make = make;
+  this.model = model;
+  this.year = year;
+  this.move = 0;
+  this.moveCar = function (num) {
+    return this.move += (num);
+  }
+};
+
 var prius = new Car('Toyota', 'Prius', 2011);
 var mustang = new Car('Ford', 'Mustang', 2013);
 
-prius.moveCar(); //increments prius' move property by 10. Returns the new move property.
-mustang.moveCar(); //increments mustang' move property by 10. Returns the new move property.
+
+prius.moveCar(10); //increments prius' move property by 10. Returns the new move property.
+mustang.moveCar(10); //increments mustang' move property by 10. Returns the new move property.
+
+
 
 //Hint, you'll need to add a move property and write a moveCar function which is added to every object that is being returned from the Car function. You'll also need to use the 'this' keyword properly in order to make sure you're invoking moveCar on the right object (prius vs mustang).
 
@@ -56,6 +78,10 @@ var getYear = function(){
 //Note(no tests)
   //Code Here
 
+getYear.call(prius);
+getYear.call(mustang);
+var getYearBoundToPrius = getYear.bind(prius);
+getYearBoundToPrius();
 
 //New Problem
 
@@ -69,7 +95,7 @@ var getMyUsername = function() {
  return this.username;
 };
 
-var userName = getMyUsername(); //Fix this
+var userName = getMyUsername.call(myUser); //Fix this
 
 //Above you're given an object, and  a function. What will the getUsername function return?
 //Note(no tests)
